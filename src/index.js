@@ -13,17 +13,6 @@ weather.setLang(config.lang);
 
 const getAllWeather = promisify(weather.getAllWeather)
 
-// const cardinals = {
-// 	'N': '⬆',
-// 	'NE': '↗',
-// 	'E': '➡',
-// 	'SE': '↘',
-// 	'S': '⬇',
-// 	'SW': '↙',
-// 	'W': '⬅',
-// 	'NW': '↖'
-// }
-
 const cardinals = {
 	'N': 'North',
 	'NE': 'North East',
@@ -35,45 +24,31 @@ const cardinals = {
 	'NW': 'North West'
 }
 
-
-// function unicodeFromDegree(deg) {
-// 	const cardinal = Compass.cardinalFromDegree(deg, 'Ordinal');
-
-// 	return cardinals[cardinal];
-// }
-
-// getAllWeather().then(console.log);
-
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
 async function updateRPC() {
 	const allWeather = await getAllWeather();
 
-	// console.log(allWeather.weather[0].icon);
-
-	// console.log(allWeather);
-	// console.log(`http://openweathermap.org/img/wn/${allWeather.weather.icon}@4x.png`);
 	const degName = Compass.cardinalFromDegree(allWeather.wind.deg, 'Ordinal')
 	console.log(degName.toLowerCase());
 	rpc.setActivity({
 		largeImageKey: allWeather.weather[0].icon,
 		largeImageText: allWeather.weather[0].description,
 		smallImageKey: degName.toLowerCase(),
-		// smallImageKey: 'e',
 		smallImageText: degName + '​',
 		details: `🌡 ${Math.round(allWeather.main.feels_like)}℃ 💨 ${Math.round(allWeather.wind.speed)} m/s`,
 		state: `🌫️ ${Math.round(allWeather.main.humidity / 10) * 10}%`,
-		endTimestamp: new Date(Date.now() + config.updateInterval).getTime()
-		// details: 'test'
+		endTimestamp: new Date(Date.now() + config.updateInterval).getTime(),
+		// buttons: [{
+		// 	label: 'Try Out',
+		// 	url: 'https://github.com/ha6000/weather-rpc'
+		// }],
 	})
 }
 
 rpc.on('ready', () => {
 	console.log('Authed for user', rpc.user.username);
 	updateRPC();
-	// rpc.setActivity({
-	// 	state: 'Hello RPC'
-	// })
 	setInterval(updateRPC, config.updateInterval);
 });
 

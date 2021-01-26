@@ -1,6 +1,6 @@
 dependencies:
   cardinal-direction: 1.0.0
-  discord-rpc: 3.1.4
+  discord-rpc: github.com/discordjs/RPC/cbdd31f98b20de0222a793ae0b14018f8119cfb2
   openweather-apis: 4.4.1
 lockfileVersion: 5.2
 packages:
@@ -8,15 +8,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-INEK4vXtuCDDbBcnlCGworWXHLSV4DTBQLK3xTtxKX7QfNZZFUgfeADEsZrsyIBDIV0ahxLP0Sld58dU2vi13w==
-  /discord-rpc/3.1.4:
-    dependencies:
-      node-fetch: 2.6.1
-      ws: 7.4.2
-    dev: false
-    peerDependencies:
-      register-scheme: 'github:devsnek/node-register-scheme'
-    resolution:
-      integrity: sha512-QaBu+gHica2SzgRAmTpuJ4J8DX9+fDwAqhvaie3hcbkU9WPqewEPh21pWdd/7vTI/JNuapU7PFm2ZKg3BTkbGg==
   /node-fetch/2.6.1:
     dev: false
     engines:
@@ -41,7 +32,18 @@ packages:
         optional: true
     resolution:
       integrity: sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
+  github.com/discordjs/RPC/cbdd31f98b20de0222a793ae0b14018f8119cfb2:
+    dependencies:
+      node-fetch: 2.6.1
+      ws: 7.4.2
+    dev: false
+    name: discord-rpc
+    peerDependencies:
+      register-scheme: 'github:devsnek/node-register-scheme'
+    resolution:
+      tarball: 'https://codeload.github.com/discordjs/RPC/tar.gz/cbdd31f98b20de0222a793ae0b14018f8119cfb2'
+    version: 3.1.4
 specifiers:
   cardinal-direction: ^1.0.0
-  discord-rpc: ^3.1.4
+  discord-rpc: 'github:discordjs/RPC'
   openweather-apis: ^4.4.1
