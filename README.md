@@ -26,4 +26,4 @@ To start the application run, `node src/index` or with pm2, `pm2 start src/index
 If you are going to use pm2, make sure it save it it so it starts back up on startup.
 
 ## Todo
-[ ] Create a weather-rpc service and init script
+[] Create a weather-rpc service and init script
