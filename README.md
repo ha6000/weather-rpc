@@ -27,3 +27,4 @@ If you are going to use pm2, make sure it save it it so it starts back up on sta
 
 ## Todo
 - [ ] Create a weather-rpc service and init script
+- [ ] Upload images
