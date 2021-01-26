@@ -7,7 +7,7 @@ Shows your current weather in discord rpc
 * Openweathermap.com api key
 
 ## Setup
-Create a `config.json` and enter you client id from developer portal with
+Create a `config.json` and enter your client id from developer portal with
 
 Example:
 ```json
