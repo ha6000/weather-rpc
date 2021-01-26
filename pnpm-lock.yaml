@@ -1,0 +1,47 @@
+dependencies:
+  cardinal-direction: 1.0.0
+  discord-rpc: 3.1.4
+  openweather-apis: 4.4.1
+lockfileVersion: 5.2
+packages:
+  /cardinal-direction/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-INEK4vXtuCDDbBcnlCGworWXHLSV4DTBQLK3xTtxKX7QfNZZFUgfeADEsZrsyIBDIV0ahxLP0Sld58dU2vi13w==
+  /discord-rpc/3.1.4:
+    dependencies:
+      node-fetch: 2.6.1
+      ws: 7.4.2
+    dev: false
+    peerDependencies:
+      register-scheme: 'github:devsnek/node-register-scheme'
+    resolution:
+      integrity: sha512-QaBu+gHica2SzgRAmTpuJ4J8DX9+fDwAqhvaie3hcbkU9WPqewEPh21pWdd/7vTI/JNuapU7PFm2ZKg3BTkbGg==
+  /node-fetch/2.6.1:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+  /openweather-apis/4.4.1:
+    dev: false
+    resolution:
+      integrity: sha512-/t3IVSEwLFQN2xBdu4iAib9OifLzdAbea/OCokchZgvMOgwMEmr8g/pRz2HjuYQpHp6HWaiS2dMf5h48LJPGug==
+  /ws/7.4.2:
+    dev: false
+    engines:
+      node: '>=8.3.0'
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    resolution:
+      integrity: sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
+specifiers:
+  cardinal-direction: ^1.0.0
+  discord-rpc: ^3.1.4
+  openweather-apis: ^4.4.1
