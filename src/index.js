@@ -1,42 +1,40 @@
 #!/usr/bin/env node
 
+// Loading Modules
 const weather = require('openweather-apis');
 const DiscordRPC = require('discord-rpc');
 const Compass = require("cardinal-direction");
 const { promisify } = require('util');
 
+// Loads config
 const config = require('../config.json');
 
+// Updates weather settings
 weather.setCity(config.city);
 weather.setAPPID(config.weatherKey);
 weather.setLang(config.lang);
 
+// Promisify weather function
 const getAllWeather = promisify(weather.getAllWeather)
 
-const cardinals = {
-	'N': 'North',
-	'NE': 'North East',
-	'E': 'East',
-	'SE': 'South East',
-	'S': 'South',
-	'SW': 'South West',
-	'W': 'West',
-	'NW': 'North West'
-}
-
+// Init Client
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
+// Function to Update the rpc
 async function updateRPC() {
+	// Get all weather
 	const allWeather = await getAllWeather();
 
-	const degName = Compass.cardinalFromDegree(allWeather.wind.deg, 'Ordinal')
-	console.log(degName.toLowerCase());
+	// Converts wind direction to cardinal
+	const degName = Compass.cardinalFromDegree(allWeather.wind.deg, 'Ordinal');
+	// Updates activity with weather data
 	rpc.setActivity({
 		largeImageKey: allWeather.weather[0].icon,
 		largeImageText: allWeather.weather[0].description,
 		smallImageKey: degName.toLowerCase(),
 		smallImageText: degName + '​',
 		details: `🌡 ${Math.round(allWeather.main.feels_like)}℃ 💨 ${Math.round(allWeather.wind.speed)} m/s`,
+		// Rounds humadity to nearest 10
 		state: `🌫️ ${Math.round(allWeather.main.humidity / 10) * 10}%`,
 		endTimestamp: new Date(Date.now() + config.updateInterval).getTime(),
 		// buttons: [{
@@ -46,10 +44,23 @@ async function updateRPC() {
 	})
 }
 
+let intervalID;
+// Announces that the client is authed
 rpc.on('ready', () => {
 	console.log('Authed for user', rpc.user.username);
-	updateRPC();
-	setInterval(updateRPC, config.updateInterval);
 });
 
+// Starts up interval when the client is connected
+rpc.on('connected', () => {
+	console.log('Connected');
+	updateRPC();
+	intervalID = setInterval(updateRPC, config.updateInterval);
+});
+
+// Clears timeout when disconnected
+rpc.on('disconnected', () => {
+	console.log('Disconnected');
+	clearTimeout(intervalID);
+})
+// Logs the client in
 rpc.login({ clientId: config.clientId });
