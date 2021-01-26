@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "cardinal-direction": "^1.0.0",
-    "discord-rpc": "^3.1.4",
+    "discord-rpc": "github:discordjs/RPC",
     "openweather-apis": "^4.4.1"
   }
 }
